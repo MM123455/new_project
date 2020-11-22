@@ -4,11 +4,10 @@ import pickle
 import train_predict
 from flask import Flask, jsonify, render_template, request,redirect, url_for
 from flask_ngrok import run_with_ngrok
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+# from flask_sqlalchemy import SQLAlchemy
+# from datetime import datetime
 # load the dataset but only keep the top n words, zero the rest
-top_words = 10000
-max_words = 500
+
 
 #load the csv file saved
 
