@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
-import train_predict
+# import train_predict
 from flask import Flask, jsonify, render_template, request,redirect, url_for
 from flask_ngrok import run_with_ngrok
 # from flask_sqlalchemy import SQLAlchemy
