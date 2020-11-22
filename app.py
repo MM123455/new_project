@@ -13,7 +13,7 @@ from flask_ngrok import run_with_ngrok
 
 
 # webapp
-app = Flask(_name_, template_folder='./') 
+app = Flask(__name__, template_folder='./') 
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -83,5 +83,5 @@ def main():
 
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run()
