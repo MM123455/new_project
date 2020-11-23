@@ -168,49 +168,47 @@ def predict_all(file_name):
   print("Classifier 8 accuracy: ",accuracy_score(clf8.predict(X_test), y_test))
 
 #================================================================================================
-
-  while True:
       
-    raw_features = extract.start(file_name)
-    
-    raw_baseline_angle = raw_features[0]
-    baseline_angle, comment = categorize.determine_baseline_angle(raw_baseline_angle)
-    result["Baseline Angle"] = comment
-    
-    raw_top_margin = raw_features[1]
-    top_margin, comment = categorize.determine_top_margin(raw_top_margin)
-    result["Top Margin"] = comment
-    
-    raw_letter_size = raw_features[2]
-    letter_size, comment = categorize.determine_letter_size(raw_letter_size)
-    result["Letter Size"] = comment
-    
-    raw_line_spacing = raw_features[3]
-    line_spacing, comment = categorize.determine_line_spacing(raw_line_spacing)
-    result["Line Spacing"] = comment
-    
-    raw_word_spacing = raw_features[4]
-    word_spacing, comment = categorize.determine_word_spacing(raw_word_spacing)
-    result["Word Spacing"] = comment
-    
-    raw_pen_pressure = raw_features[5]
-    pen_pressure, comment = categorize.determine_pen_pressure(raw_pen_pressure)
-    result["Pen Pressure"] = comment
-    
-    raw_slant_angle = raw_features[6]
-    slant_angle, comment = categorize.determine_slant_angle(raw_slant_angle)
-    result["Slant"] = comment
-    
-    result["Emotional Stability"] = clf1.predict([[baseline_angle, slant_angle]])
-    result["Mental Energy or Will Power"] = clf2.predict([[letter_size, pen_pressure]])
-    result["Modesty"] = clf3.predict([[letter_size, top_margin]])
-    result["Personal Harmony and Flexibility"] = clf4.predict([[line_spacing, word_spacing]])
-    result["Lack of Discipline"] = clf5.predict([[slant_angle, top_margin]])
-    result["Poor Concentration"] = clf6.predict([[letter_size, line_spacing]])
-    result["Non Communicativeness"] = clf7.predict([[letter_size, word_spacing]])
-    result["Social Isolation"] = clf8.predict([[line_spacing, word_spacing]])
+  raw_features = extract.start(file_name)
+  
+  raw_baseline_angle = raw_features[0]
+  baseline_angle, comment = categorize.determine_baseline_angle(raw_baseline_angle)
+  result["Baseline Angle"] = comment
+  
+  raw_top_margin = raw_features[1]
+  top_margin, comment = categorize.determine_top_margin(raw_top_margin)
+  result["Top Margin"] = comment
+  
+  raw_letter_size = raw_features[2]
+  letter_size, comment = categorize.determine_letter_size(raw_letter_size)
+  result["Letter Size"] = comment
+  
+  raw_line_spacing = raw_features[3]
+  line_spacing, comment = categorize.determine_line_spacing(raw_line_spacing)
+  result["Line Spacing"] = comment
+  
+  raw_word_spacing = raw_features[4]
+  word_spacing, comment = categorize.determine_word_spacing(raw_word_spacing)
+  result["Word Spacing"] = comment
+  
+  raw_pen_pressure = raw_features[5]
+  pen_pressure, comment = categorize.determine_pen_pressure(raw_pen_pressure)
+  result["Pen Pressure"] = comment
+  
+  raw_slant_angle = raw_features[6]
+  slant_angle, comment = categorize.determine_slant_angle(raw_slant_angle)
+  result["Slant"] = comment
+  
+  result["Emotional Stability"] = clf1.predict([[baseline_angle, slant_angle]])
+  result["Mental Energy or Will Power"] = clf2.predict([[letter_size, pen_pressure]])
+  result["Modesty"] = clf3.predict([[letter_size, top_margin]])
+  result["Personal Harmony and Flexibility"] = clf4.predict([[line_spacing, word_spacing]])
+  result["Lack of Discipline"] = clf5.predict([[slant_angle, top_margin]])
+  result["Poor Concentration"] = clf6.predict([[letter_size, line_spacing]])
+  result["Non Communicativeness"] = clf7.predict([[letter_size, word_spacing]])
+  result["Social Isolation"] = clf8.predict([[line_spacing, word_spacing]])
 
-    break
+  return result
 
       
 
