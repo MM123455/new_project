@@ -37,7 +37,42 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='./Akash Jindal_files/scrollbar.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+        <style>
+            .alert {
+      padding: 12px;
+      border-radius: 4px;
+      background-color: #f44336;
+      color: white;
+      opacity: 0.5;
+      transition: opacity 0.6s;
+      margin-bottom: 12px;
+      -webkit-box-shadow: -5px 5px 9px 0px rgba(142, 76, 50, 0.75);
+      -moz-box-shadow:    -5px 5px 9px 0px rgba(142, 76, 50, 0.75);
+      box-shadow:         -5px 5px 9px 0px rgba(142, 76, 50, 0.75);
+    }
+    
+    .alert.success {background-color: #4CAF50;
+        -webkit-box-shadow: -5px 5px 9px 0px rgba(37, 135, 50, 0.75);
+    -moz-box-shadow:    -5px 5px 9px 0px rgba(37, 135, 50, 0.75);
+    box-shadow:         -5px 5px 9px 0px rgba(37, 135, 50, 0.75);}
+    .alert.info {background-color: #2196F3;}
+    .alert.warning {background-color: #ff9800;}
+    
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .closebtn:hover {
+      color: black;
+    }
+        </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,7 +89,7 @@
 
 
 
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="2000" id="bs-carousel">
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="10000" id="bs-carousel">
   <!-- Overlay -->
   <div class="overlay">
 
@@ -75,22 +110,29 @@
         </hgroup>
         <form name="myform" method=POST enctype="multipart/form-data">
 	    	<button class="btn btn-hero btn-lg" role="button"><input type="file" id="myFile" name="file"></button><br>
-	  		<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          <input type="submit" class="btn btn-hero btn-lg">
-        </a>
-        <div class="collapse" id="collapseExample">
+            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><input type="submit" class="btn btn-hero btn-lg"value="Submit"></a>
+        </form>
+        <!-- <div class="collapse" id="collapseExample">
           <div class="card card-body" style = "color:black; overflow-y: scroll; height:200px;">
             {% for key,value in result.items() %}
                 <p>{{ key }} : {{ value }}</p>
                 <br>
             {% endfor %}
-          </div>
+          </div> 
+        </div> -->
+    </div>
+      <div class="collapse" id="collapseExample">
+          <div class="card card-body" style = "color:black; overflow-y: scroll; height:200px;">
+      <div>
+            {% for key,value in result.items() %}
+                <div>{{key}}:{{value}}</div>
+            {% endfor %}
         </div>
-      </form>
-      
+      </div>
+      </div>
       </div>
     </div>
-    <div class="item slides">
+    <!-- <div class="item slides">
       <div class="slide-2"></div>
       <div class="hero">        
         <hgroup>
@@ -112,7 +154,7 @@
     </div>
     
   </div> 
-</div>
+</div> -->
  
 
 <div class="education_section" style="background-image: url('/static/img/4.jpg'); background-repeat: no-repeat; background-attachment: fixed;
@@ -379,6 +421,18 @@ background-size: cover;">
   </div>
 </div>
 </div> <!-- End Education section  -->
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+    
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+    </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

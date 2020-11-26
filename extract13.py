@@ -733,7 +733,8 @@ def start(file_name):
 	global SLANT_ANGLE
 
 	# read image from disk
-	image = cv2.imread('a.png',0)
+	path = '/content/new_project/static/uploads/{}'.format(file_name)
+	image = cv2.imread(path,0)
   # print("wjbhlblbbl")
 	cv2_imshow(image)
 	

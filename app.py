@@ -1,53 +1,36 @@
+from flask import Flask, render_template, flash, request, url_for, redirect,jsonify
+from flask_ngrok import run_with_ngrok
+from werkzeug.utils import secure_filename
+import os
 import numpy as np
 import pandas as pd
 import pickle
-# import train_predict
-from flask import Flask, jsonify, render_template, request,redirect, url_for
-from flask_ngrok import run_with_ngrok
-from train_predict import predict_all
-import os
-# from flask_sqlalchemy import SQLAlchemy
-# from datetime import datetime
-# load the dataset but only keep the top n words, zero the rest
+import train_predict
 
-UPLOAD_FOLDER = '/uploads'
+app = Flask(__name__, template_folder='./')
+
+
+app.config['UPLOAD_FOLDER'] = '/content/new_project/static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-
-# webapp
-app = Flask(__name__, template_folder='./') 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-
-# db = SQLAlchemy(app)
 run_with_ngrok(app)
 
-# def allowed_file(filename):
-#     return '.' in filename and \
-#         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET','POST'])
 def main():
-
-    if  request.method == "POST":
-        if 'file' not in request.files:
-            return '<h2>No file given'
-
-        f = request.files['file']
-        print(f.filename)
-        if f.filename != '':
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
-            result = predict_all(f.filename)
-            print(result)
-            return render_template('index.html', result=result)
-    else:
-        return render_template('index.html', result={})
-
-
-
-
+    error_msg = ''
+    if request.method=='POST':
+        uploaded_file = request.files['file']
+        if uploaded_file.filename != '':
+            if not allowed_file(uploaded_file.filename):
+                return render_template('index.html', result={}, error_msg='Invalid extension')
+            uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'],uploaded_file.filename))
+            result = train_predict.predict_all(uploaded_file.filename)
+            return render_template('index.html', result=result, error_msg=error_msg)
+    return render_template('index.html',result={},error_msg=error_msg)
 
 if __name__ == '__main__':
     app.run()

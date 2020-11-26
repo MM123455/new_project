@@ -1,15 +1,17 @@
 import os
+import cv2
 import itertools
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import extract5 as extract
+import extract13 as extract
 import categorize
 from google.colab.patches import cv2_imshow
 
-result = {}
+
 
 def predict_all(file_name):
+  result = {}
   X_baseline_angle = []
   X_top_margin = []
   X_letter_size = []
