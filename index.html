@@ -110,26 +110,25 @@
         </hgroup>
         <form name="myform" method=POST enctype="multipart/form-data">
 	    	<button class="btn btn-hero btn-lg" role="button"><input type="file" id="myFile" name="file"></button><br>
-            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><input type="submit" class="btn btn-hero btn-lg"value="Submit"></a>
-        </form>
+            <p><input type="submit" class="btn btn-hero btn-lg"value="Submit"></p>
+            
         <!-- <div class="collapse" id="collapseExample">
           <div class="card card-body" style = "color:black; overflow-y: scroll; height:200px;">
             {% for key,value in result.items() %}
                 <p>{{ key }} : {{ value }}</p>
                 <br>
             {% endfor %}
-          </div> 
-        </div> -->
+          </div> -->
+        </div>
     </div>
-      <div class="collapse" id="collapseExample">
-          <div class="card card-body" style = "color:black; overflow-y: scroll; height:200px;">
+
+      </form>
       <div>
             {% for key,value in result.items() %}
                 <div>{{key}}:{{value}}</div>
             {% endfor %}
         </div>
-      </div>
-      </div>
+      
       </div>
     </div>
     <!-- <div class="item slides">
